@@ -65,6 +65,7 @@ class Home: UIViewController, UICollectionViewDataSource, UICollectionViewDelega
             cell.image.image = UIImage(named: self.categoryItems[indexPath.item])
             
             return cell
+            
         } else {
             
             // Get a reference to our storyboard cell
@@ -76,8 +77,24 @@ class Home: UIViewController, UICollectionViewDataSource, UICollectionViewDelega
             cell.productPrice.text = "Rp. 50.000"
             
             return cell
+            
         }
         
+    }
+    
+    // Cell on selected action
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // If statement for different collection view
+        if (collectionView == categoryCollectionView) {
+            
+            // Navigate to category screen
+            let storyboard = self.storyboard
+            let controller = storyboard?.instantiateViewController(withIdentifier: "category") as! Category
+            controller.productCategoryLabel = self.categoryItems[indexPath.item]
+            self.show(controller, sender: nil)
+            
+        }
     }
     
 }
