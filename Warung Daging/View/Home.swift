@@ -8,6 +8,11 @@
 
 import UIKit
 
+let drumstick = ProductModel(name: "Drumstick", price: "Rp. 20.000", image: "Drumstick")
+let chickenWings = ProductModel(name: "Chicken Wings", price: "Rp. 35.000", image: "Chicken Wings")
+let chickenNugget = ProductModel(name: "Chicken Nugget", price: "Rp. 50.000", image: "Chicken Nugget")
+let baksoSuper = ProductModel(name: "Bakso Super", price: "Rp. 25.000", image: "Bakso Super")
+
 class Home: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet weak var categoryCollectionView: UICollectionView!
@@ -20,7 +25,7 @@ class Home: UIViewController, UICollectionViewDataSource, UICollectionViewDelega
     
     // Collection view data source
     let categoryItems = ["Kambing", "Sapi", "Bebek", "Ayam"]
-    let favoriteProducts = ["Drumstick", "Chicken Wings", "Chicken Nugget", "Bakso Super"]
+    let favoriteProducts = [drumstick, chickenWings, chickenNugget, baksoSuper]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,9 +77,9 @@ class Home: UIViewController, UICollectionViewDataSource, UICollectionViewDelega
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: favoriteReuseIdentifier, for: indexPath as IndexPath) as! FavoriteCollectionViewCell
             
             //Use the outlet in our custom class
-            cell.productImage.image = UIImage(named: self.favoriteProducts[indexPath.item])
-            cell.productName.text = self.favoriteProducts[indexPath.item]
-            cell.productPrice.text = "Rp. 50.000"
+            cell.productImage.image = UIImage(named: self.favoriteProducts[indexPath.item].productImage)
+            cell.productName.text = self.favoriteProducts[indexPath.item].productName
+            cell.productPrice.text = self.favoriteProducts[indexPath.item].productPrice
             
             return cell
             
